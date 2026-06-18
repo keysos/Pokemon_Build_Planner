@@ -153,18 +153,31 @@ body {
 
 @media (max-width: 750px) {
   .pokemon-team-display {
-    width: 80%;
+    width: 100%;
+    max-width: 500px;
     grid-template-columns: 1fr;
     margin: 0 auto;
   }
-
   .input-container {
+    flex-direction: column;
+  }
+
+  .input-container-right button, .input-container-left select {
+    font-size: 1rem;
+  }
+
+  .input-container-left,
+  .input-container-right {
+    display: flex;
     justify-content: space-around;
+    align-items: stretch;
+    gap: 20px;
   }
 
   .header {
     font-size: 1.8rem;
   }
+
 }
 
 /* POKEMON CARD */
@@ -250,7 +263,7 @@ body {
   min-width: 0px;
   height: 35px;
   border: 1px solid var(--border);
-  
+
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -264,7 +277,8 @@ body {
   transition: background 0.2s ease;
 }
 
-.input-container-left > *, .input-container-right > * {
+.input-container-left>*,
+.input-container-right>* {
   width: 100%;
   font-size: 1.2rem;
   border: 1px solid var(--border);
@@ -274,14 +288,16 @@ body {
   cursor: pointer;
 }
 
-.input-container-left, .input-container-right {
+.input-container-left,
+.input-container-right {
   display: flex;
   width: 100%;
   justify-content: space-around;
   gap: 20px;
 }
 
-.input-container-left > *:hover, .input-container-right > *:hover {
+.input-container-left>*:hover,
+.input-container-right>*:hover {
   background-color: var(--surface-hover);
 }
 
@@ -309,7 +325,7 @@ body {
 }
 
 .pokemon-card select:disabled {
-  color: var(--text); 
+  color: var(--text);
   opacity: 0.9;
   cursor: not-allowed;
 }
@@ -507,10 +523,10 @@ body {
 }
 
 /* ON STATE */
-.theme-switch input:checked + .slider {
+.theme-switch input:checked+.slider {
   background-color: #334155;
 }
 
-.theme-switch input:checked + .slider::before {
+.theme-switch input:checked+.slider::before {
   transform: translateX(24px);
 }
