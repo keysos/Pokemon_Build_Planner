@@ -71,7 +71,7 @@ body.darkmode {
 }
 
 html {
-  font-size: 16px;
+  font-size: 14px;
   font-family: "Inter", sans-serif;
 }
 
@@ -87,23 +87,23 @@ body {
 }
 
 .header {
-  margin: 40px auto;
+  margin: 20px auto 20px auto;
   padding: 0 1rem;
   width: 100%;
-  max-width: 600px;
-  font-size: 2.2rem;
+  max-width: 500px;
+  font-size: 1.3rem;
   text-align: center;
 }
 
 .header p {
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
 .input-container {
   display: flex;
-  margin-bottom: 40px;
+  margin-bottom: 14px;
   width: 100%;
-  gap: 40px;
+  gap: 30px;
 }
 
 #app {
@@ -111,7 +111,7 @@ body {
   flex-direction: column;
   width: 100%;
   justify-content: center;
-  max-width: 1200px;
+  max-width: 1100px;
 
   margin: 0 auto;
 }
@@ -120,15 +120,12 @@ body {
   margin-top: 30vh;
   display: block;
   text-align: center;
-  font-size: 2.5rem;
+  font-size: 2rem;
 }
 
 .main {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-
-  padding: 0 20px 40px;
+  flex: 1;
+  overflow: auto;
 }
 
 /* POKEMON team GRID */
@@ -137,10 +134,11 @@ body {
   display: grid;
 
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  gap: 14px;
 
   width: 100%;
   max-width: 1200px;
+
 }
 
 
@@ -154,7 +152,7 @@ body {
 @media (max-width: 750px) {
   .pokemon-team-display {
     width: 100%;
-    max-width: 500px;
+    max-width: 440px;
     grid-template-columns: 1fr;
     margin: 0 auto;
   }
@@ -163,7 +161,7 @@ body {
   }
 
   .input-container-right button, .input-container-left select {
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
 
   .input-container-left,
@@ -171,11 +169,11 @@ body {
     display: flex;
     justify-content: space-around;
     align-items: stretch;
-    gap: 20px;
+    gap: 14px;
   }
 
   .header {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
   }
 
 }
@@ -193,12 +191,12 @@ body {
     "image moves"
     "item ability";
 
-  row-gap: 10px;
-  column-gap: 15px;
+  row-gap: 8px;
+  column-gap: 12px;
   width: 100%;
-  min-height: 340px;
+  min-height: 280px;
   min-width: 0;
-  padding: 15px;
+  padding: 12px;
   border-radius: 10px;
 
   border: 1px solid var(--border);
@@ -224,18 +222,18 @@ body {
   justify-self: center;
 
   min-width: 0;
-  max-width: 160px;
+  max-width: 130px;
 
   grid-area: image;
 
-  min-height: 170px;
+  min-height: 130px;
   overflow: hidden;
 
 }
 
 .pokemon-img {
-  width: 120px;
-  max-height: 170px;
+  width: 96px;
+  max-height: 130px;
   object-fit: contain;
   image-rendering: pixelated;
 }
@@ -261,7 +259,7 @@ body {
 .pokemon-card select {
   width: 100%;
   min-width: 0px;
-  height: 35px;
+  height: 30px;
   border: 1px solid var(--border);
 
   overflow: hidden;
@@ -270,7 +268,7 @@ body {
 
   background-color: var(--surface);
 
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-family: inherit;
   cursor: pointer;
   color: inherit;
@@ -278,9 +276,9 @@ body {
 }
 
 .input-container-left>*,
-.input-container-right>* {
+.input-container-right>*:not(.theme-switch-wrapper) {
   width: 100%;
-  font-size: 1.2rem;
+  font-size: 1rem;
   border: 1px solid var(--border);
   background-color: var(--surface);
   color: var(--text);
@@ -293,22 +291,22 @@ body {
   display: flex;
   width: 100%;
   justify-content: space-around;
-  gap: 20px;
+  gap: 14px;
 }
 
 .input-container-left>*:hover,
-.input-container-right>*:hover {
+.input-container-right>*:not(.theme-switch-wrapper):hover {
   background-color: var(--surface-hover);
 }
 
 .input-container-left select {
-  max-width: 200px;
-  padding: 10px;
+  max-width: 170px;
+  padding: 8px;
 }
 
 .input-container-right button {
-  max-width: 100px;
-  padding: 5px;
+  max-width: 90px;
+  padding: 4px;
   border-radius: 15px;
 }
 
@@ -345,17 +343,17 @@ body {
   grid-area: type;
   display: flex;
   flex-wrap: nowrap;
-  gap: 10px;
+  gap: 8px;
   justify-content: center;
 }
 
 .type {
   display: inline-block;
-  padding: 6px 14px;
+  padding: 4px 10px;
   border-radius: 999px;
 
   font-weight: 900;
-  font-size: 13px;
+  font-size: 0.8rem;
   letter-spacing: 1px;
 
   color: white;
@@ -483,16 +481,15 @@ body {
 .theme-switch {
   position: relative;
   display: inline-block;
-  width: 52px;
-  height: 28px;
+  width: 46px;
+  height: 24px;
 }
 
 .theme-switch-wrapper {
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-size: 1.2rem;
-  padding: 10px;
+  gap: 8px;
+  font-size: 1rem;
 }
 
 .theme-switch input {
@@ -513,8 +510,8 @@ body {
 .slider::before {
   content: "";
   position: absolute;
-  height: 22px;
-  width: 22px;
+  height: 18px;
+  width: 18px;
   left: 3px;
   top: 3px;
   background-color: white;
