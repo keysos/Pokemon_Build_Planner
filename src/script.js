@@ -201,19 +201,12 @@ genFilter.addEventListener("change", () => {
 });
 
 toggle.addEventListener("change", () => {
-    document.body.classList.toggle(
-        "darkmode",
-        toggle.checked
-    );
-
-    sessionStorage.setItem(
-        "theme",
-        toggle.checked ? "darkmode" : "light"
-    );
+    document.body.classList.toggle("darkmode", toggle.checked);
 });
 
 clearBtn.addEventListener("click", () => {
 
+    if (!confirm("Clear all Pokemon from your party?")) return;
 
     pokemonCards.forEach(card => {
         const sprite = card.querySelector(".pokemon-img");
@@ -427,11 +420,9 @@ async function init() {
 
 }
 
-const savedTheme = sessionStorage.getItem("theme");
+const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
 
-if (savedTheme === "darkmode") {
-    document.body.classList.add("darkmode");
-    document.getElementById("theme-toggle").checked = true;
-}
+document.body.classList.toggle("darkmode", systemPrefersDark);
+toggle.checked = systemPrefersDark;
 
 init();

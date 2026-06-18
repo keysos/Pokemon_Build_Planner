@@ -250,7 +250,6 @@ body {
   min-width: 0px;
   height: 35px;
   border: 1px solid var(--border);
-  border-radius: 10px 10px 0 0;
   
   overflow: hidden;
   text-overflow: ellipsis;
@@ -270,7 +269,6 @@ body {
   font-size: 1.2rem;
   border: 1px solid var(--border);
   background-color: var(--surface);
-  border-radius: 15px;
   color: var(--text);
   transition: background 0.2s ease;
   cursor: pointer;
@@ -280,6 +278,7 @@ body {
   display: flex;
   width: 100%;
   justify-content: space-around;
+  gap: 20px;
 }
 
 .input-container-left > *:hover, .input-container-right > *:hover {
@@ -289,12 +288,12 @@ body {
 .input-container-left select {
   max-width: 200px;
   padding: 10px;
-  border-radius: 10px 10px 0 0;
 }
 
 .input-container-right button {
   max-width: 100px;
   padding: 5px;
+  border-radius: 15px;
 }
 
 .field {
