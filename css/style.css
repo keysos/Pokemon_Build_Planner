@@ -52,6 +52,13 @@ body {
 
 /*Pokemon card styling*/
 
+.pokemon-party-display {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
 .pokemon-card {
     padding: 10px;
     border-radius: 10px;
@@ -85,7 +92,7 @@ body {
     grid-area: image;
 }
 
-#pokemon-img {
+.pokemon-img {
     width: 140px;
     height: auto;
     image-rendering: pixelated;
