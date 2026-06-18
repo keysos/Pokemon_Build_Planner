@@ -1,76 +1,50 @@
-\# Pokémon Build Planner
+# Pokémon Build Planner
 
+A web application for creating, managing, and optimizing Pokémon builds.
 
+Create custom Pokémon setups, manage stats, abilities, moves, held items, and save your strategies directly in your browser.
 
-A web application for creating, managing, and optimizing Pokémon builds.  
+Built with **HTML, CSS, and JavaScript**, using **Local Storage** for persistence and the **PokéAPI** for retrieving Pokémon data.
 
-Users can create custom Pokémon builds, manage stats, abilities, moves, items, and save their strategies locally.
+---
 
+## Features
 
+## 🏗️ Build Management
 
-The project is built using \*\*HTML, CSS, and JavaScript\*\*, with data stored using \*\*Local Storage\*\* and Pokémon information retrieved through an API.
+Create and manage your custom Pokémon builds:
 
+- Create new builds
+- Save builds locally
+- Edit existing builds
+- Delete builds
+- View all saved builds
+- Organize your favorite strategies
 
+---
 
-\---
+## 🔍 Pokémon Data Integration
 
+Retrieve Pokémon information dynamically:
 
+- Search Pokémon
+- Display Pokémon details
+- View abilities
+- Select moves
+- Add held items
+- Use API data to improve build creation
 
-\## Features
+---
 
+## ⚔️ Build Customization
 
+Each build supports:
 
-\### Build Management
-
-\- Create custom Pokémon builds
-
-\- Save builds locally
-
-\- Edit existing builds
-
-\- Delete builds
-
-\- View all saved builds
-
-
-
-\### Pokémon Information
-
-\- Search Pokémon
-
-\- Display Pokémon data from an API
-
-\- Select abilities and moves
-
-\- Add held items
-
-
-
-\### Build Customization
-
-
-
-Each build can contain:
-
-
-
-\- Pokémon name
-
-\- Level
-
-\- Nature
-
-\- Ability
-
-\- Moveset
-
-\- Held item
-
-\- EV distribution
-
-\- IV values
-
-\- Strategy notes
-
-
-
+- Pokémon name
+- Level
+- Nature
+- Ability
+- Moveset
+- Held item
+- EV distribution
+- IV values
