@@ -6,366 +6,432 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pokemon Party Planner</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tom-select/dist/css/tom-select.css">
-    <script src="https://cdn.jsdelivr.net/npm/tom-select/dist/js/tom-select.complete.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="icon" type="image/png" href="assets/pokeball_favicon.png">
 </head>
 
 <body>
 
     <header class="header">
         <h1>Pokemon Party Planner</h1>
-        <p>For Generation 1 to 3 #ONLY GEN 1 FOR THE MOMENT</p>
+        <p>Generation 1 to 5</p>
     </header>
 
     <main class="main">
-        <section class="pokemon-party-display">
 
-            <form class="pokemon-card-form" id="pokemon-form-1">
-                <article class="pokemon-card">
-                    <div class="field pokemon-name">
-                        <label for="pokemon-name-1" class="visually-hidden">Name</label>
-                        <select id="pokemon-name-1" class="pokemon-select" name="pokemon-name">
-                            <option value="" disabled selected hidden>Name</option>
-                        </select>
-                    </div>
+        <div id="loading">Loading...</div>
 
-                    <div class="pokemon-image">
-                        <img id="pokemon-img-1" class="pokemon-img" src="assets/unknown_pokemon_sprite-removebg-preview.png"
-                            alt="Selected Pokemon sprite">
-                    </div>
+        <div id="app">
 
-                    <div class="field pokemon-item">
-                        <label for="pokemon-item-1" class="visually-hidden">Item</label>
-                        <select id="pokemon-item-1" class="item-select" name="pokemon-item">
-                            <option value="" disabled selected hidden>Item</option>
-                        </select>
-                    </div>
+            <div class="filter-container">
+                <select id="type-selector" class="type-select" name="type-filter">
+                    <option value="">All Types</option>
+                    <option value="bug">Bug</option>
+                    <option value="dark">Dark</option>
+                    <option value="dragon">Dragon</option>
+                    <option value="electric">Electric</option>
+                    <option value="fairy">Fairy</option>
+                    <option value="fighting">Fighting</option>
+                    <option value="fire">Fire</option>
+                    <option value="flying">Flying</option>
+                    <option value="ghost">Ghost</option>
+                    <option value="grass">Grass</option>
+                    <option value="ground">Ground</option>
+                    <option value="ice">Ice</option>
+                    <option value="normal">Normal</option>
+                    <option value="poison">Poison</option>
+                    <option value="psychic">Psychic</option>
+                    <option value="rock">Rock</option>
+                    <option value="steel">Steel</option>
+                    <option value="water">Water</option>
+                </select>
 
-                    <div class="moves">
-                        <div class="field move">
-                            <label for="move-1-1" class="visually-hidden">Move</label>
-                            <select id="move-1-1" class="move-select" name="move-1">
-                                <option value="" disabled selected hidden>Move</option>
+                <select id="gen-selector" class="gen-select" name="gen-filter">
+                    <option value="">All Regions</option>
+                    <option value="1">Kanto</option>
+                    <option value="2">Johto</option>
+                    <option value="3">Hoenn</option>
+                    <option value="4">Sinnoh</option>
+                    <option value="5">Unova</option>
+                </select>
+
+                
+            </div>
+
+            <section class="pokemon-party-display">
+
+                <form class="pokemon-card-form" id="pokemon-form-1">
+                    <article class="pokemon-card">
+                        <div class="field pokemon-name">
+                            <label for="pokemon-name-1" class="visually-hidden">Name</label>
+                            <select id="pokemon-name-1" class="pokemon-select" name="pokemon-name">
+                                <option value="" disabled selected hidden>Name</option>
                             </select>
                         </div>
-                        <div class="field move">
-                            <label for="move-1-2" class="visually-hidden">Move</label>
-                            <select id="move-1-2" class="move-select" name="move-2">
-                                <option value="" disabled selected hidden>Move</option>
+
+                        <div class="field pokemon-type">
+                        </div>
+
+                        <div class="field pokemon-image">
+                            <img id="pokemon-img-1" class="pokemon-img"
+                                src="assets/unknown_sprite.png" alt="Selected Pokemon sprite">
+                        </div>
+
+                        <div class="field pokemon-item">
+                            <div class="item-sprite">
+
+                            </div>
+                            <label for="pokemon-item-1" class="visually-hidden">Item</label>
+                            <select id="pokemon-item-1" class="item-select" name="pokemon-item">
+                                <option value="" disabled selected hidden>Item</option>
                             </select>
                         </div>
-                        <div class="field move">
-                            <label for="move-1-3" class="visually-hidden">Move</label>
-                            <select id="move-1-3" class="move-select" name="move-3">
-                                <option value="" disabled selected hidden>Move</option>
+
+                        <div class="field moves">
+                            <div class="field move">
+                                <label for="move-1-1" class="visually-hidden">Move</label>
+                                <select id="move-1-1" class="move-select" name="move-1">
+                                    <option value="" disabled selected hidden>Move</option>
+                                </select>
+                            </div>
+                            <div class="field move">
+                                <label for="move-1-2" class="visually-hidden">Move</label>
+                                <select id="move-1-2" class="move-select" name="move-2">
+                                    <option value="" disabled selected hidden>Move</option>
+                                </select>
+                            </div>
+                            <div class="field move">
+                                <label for="move-1-3" class="visually-hidden">Move</label>
+                                <select id="move-1-3" class="move-select" name="move-3">
+                                    <option value="" disabled selected hidden>Move</option>
+                                </select>
+                            </div>
+                            <div class="field move">
+                                <label for="move-1-4" class="visually-hidden">Move</label>
+                                <select id="move-1-4" class="move-select" name="move-4">
+                                    <option value="" disabled selected hidden>Move</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="field pokemon-ability">
+                            <label for="pokemon-ability-1" class="visually-hidden">Ability</label>
+                            <select id="pokemon-ability-1" class="ability-select" name="pokemon-ability">
+                                <option value="" disabled selected hidden>Ability</option>
                             </select>
                         </div>
-                        <div class="field move">
-                            <label for="move-1-4" class="visually-hidden">Move</label>
-                            <select id="move-1-4" class="move-select" name="move-4">
-                                <option value="" disabled selected hidden>Move</option>
+                    </article>
+                </form>
+
+                <form class="pokemon-card-form" id="pokemon-form-2">
+                    <article class="pokemon-card">
+                        <div class="field pokemon-name">
+                            <label for="pokemon-name-2" class="visually-hidden">Name</label>
+                            <select id="pokemon-name-2" class="pokemon-select" name="pokemon-name">
+                                <option value="" disabled selected hidden>Name</option>
                             </select>
                         </div>
-                    </div>
 
-                    <div class="field pokemon-ability">
-                        <label for="pokemon-ability-1" class="visually-hidden">Ability</label>
-                        <select id="pokemon-ability-1" class="ability-select" name="pokemon-ability">
-                            <option value="" disabled selected hidden>Ability</option>
-                        </select>
-                    </div>
-                </article>
-            </form>
+                        <div class="field pokemon-type">
+                        </div>
 
-            <form class="pokemon-card-form" id="pokemon-form-2">
-                <article class="pokemon-card">
-                    <div class="field pokemon-name">
-                        <label for="pokemon-name-2" class="visually-hidden">Name</label>
-                        <select id="pokemon-name-2" class="pokemon-select" name="pokemon-name">
-                            <option value="" disabled selected hidden>Name</option>
-                        </select>
-                    </div>
+                        <div class="field pokemon-image">
+                            <img id="pokemon-img-2" class="pokemon-img"
+                                src="assets/unknown_sprite.png" alt="Selected Pokemon sprite">
+                        </div>
 
-                    <div class="pokemon-image">
-                        <img id="pokemon-img-2" class="pokemon-img" src="assets/unknown_pokemon_sprite-removebg-preview.png"
-                            alt="Selected Pokemon sprite">
-                    </div>
-
-                    <div class="field pokemon-item">
-                        <label for="pokemon-item-2" class="visually-hidden">Item</label>
-                        <select id="pokemon-item-2" class="item-select" name="pokemon-item">
-                            <option value="" disabled selected hidden>Item</option>
-                        </select>
-                    </div>
-
-                    <div class="moves">
-                        <div class="field move">
-                            <label for="move-2-1" class="visually-hidden">Move</label>
-                            <select id="move-2-1" class="move-select" name="move-1">
-                                <option value="" disabled selected hidden>Move</option>
+                        <div class="field pokemon-item">
+                            <label for="pokemon-item-2" class="visually-hidden">Item</label>
+                            <select id="pokemon-item-2" class="item-select" name="pokemon-item">
+                                <option value="" disabled selected hidden>Item</option>
                             </select>
                         </div>
-                        <div class="field move">
-                            <label for="move-2-2" class="visually-hidden">Move</label>
-                            <select id="move-2-2" class="move-select" name="move-2">
-                                <option value="" disabled selected hidden>Move</option>
+
+                        <div class="field moves">
+                            <div class="field move">
+                                <label for="move-2-1" class="visually-hidden">Move</label>
+                                <select id="move-2-1" class="move-select" name="move-1">
+                                    <option value="" disabled selected hidden>Move</option>
+                                </select>
+                            </div>
+                            <div class="field move">
+                                <label for="move-2-2" class="visually-hidden">Move</label>
+                                <select id="move-2-2" class="move-select" name="move-2">
+                                    <option value="" disabled selected hidden>Move</option>
+                                </select>
+                            </div>
+                            <div class="field move">
+                                <label for="move-2-3" class="visually-hidden">Move</label>
+                                <select id="move-2-3" class="move-select" name="move-3">
+                                    <option value="" disabled selected hidden>Move</option>
+                                </select>
+                            </div>
+                            <div class="field move">
+                                <label for="move-2-4" class="visually-hidden">Move</label>
+                                <select id="move-2-4" class="move-select" name="move-4">
+                                    <option value="" disabled selected hidden>Move</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="field pokemon-ability">
+                            <label for="pokemon-ability-2" class="visually-hidden">Ability</label>
+                            <select id="pokemon-ability-2" class="ability-select" name="pokemon-ability">
+                                <option value="" disabled selected hidden>Ability</option>
                             </select>
                         </div>
-                        <div class="field move">
-                            <label for="move-2-3" class="visually-hidden">Move</label>
-                            <select id="move-2-3" class="move-select" name="move-3">
-                                <option value="" disabled selected hidden>Move</option>
+                    </article>
+                </form>
+
+                <form class="pokemon-card-form" id="pokemon-form-3">
+                    <article class="pokemon-card">
+                        <div class="field pokemon-name">
+                            <label for="pokemon-name-3" class="visually-hidden">Name</label>
+                            <select id="pokemon-name-3" class="pokemon-select" name="pokemon-name">
+                                <option value="" disabled selected hidden>Name</option>
                             </select>
                         </div>
-                        <div class="field move">
-                            <label for="move-2-4" class="visually-hidden">Move</label>
-                            <select id="move-2-4" class="move-select" name="move-4">
-                                <option value="" disabled selected hidden>Move</option>
+
+                        <div class="field pokemon-type">
+                        </div>
+
+                        <div class="field pokemon-image">
+                            <img id="pokemon-img-3" class="pokemon-img"
+                                src="assets/unknown_sprite.png" alt="Selected Pokemon sprite">
+                        </div>
+
+                        <div class="field pokemon-item">
+                            <label for="pokemon-item-3" class="visually-hidden">Item</label>
+                            <select id="pokemon-item-3" class="item-select" name="pokemon-item">
+                                <option value="" disabled selected hidden>Item</option>
                             </select>
                         </div>
-                    </div>
 
-                    <div class="field pokemon-ability">
-                        <label for="pokemon-ability-2" class="visually-hidden">Ability</label>
-                        <select id="pokemon-ability-2" class="ability-select" name="pokemon-ability">
-                            <option value="" disabled selected hidden>Ability</option>
-                        </select>
-                    </div>
-                </article>
-            </form>
+                        <div class="field moves">
+                            <div class="field move">
+                                <label for="move-3-1" class="visually-hidden">Move</label>
+                                <select id="move-3-1" class="move-select" name="move-1">
+                                    <option value="" disabled selected hidden>Move</option>
+                                </select>
+                            </div>
+                            <div class="field move">
+                                <label for="move-3-2" class="visually-hidden">Move</label>
+                                <select id="move-3-2" class="move-select" name="move-2">
+                                    <option value="" disabled selected hidden>Move</option>
+                                </select>
+                            </div>
+                            <div class="field move">
+                                <label for="move-3-3" class="visually-hidden">Move</label>
+                                <select id="move-3-3" class="move-select" name="move-3">
+                                    <option value="" disabled selected hidden>Move</option>
+                                </select>
+                            </div>
+                            <div class="field move">
+                                <label for="move-3-4" class="visually-hidden">Move</label>
+                                <select id="move-3-4" class="move-select" name="move-4">
+                                    <option value="" disabled selected hidden>Move</option>
+                                </select>
+                            </div>
+                        </div>
 
-            <form class="pokemon-card-form" id="pokemon-form-3">
-                <article class="pokemon-card">
-                    <div class="field pokemon-name">
-                        <label for="pokemon-name-3" class="visually-hidden">Name</label>
-                        <select id="pokemon-name-3" class="pokemon-select" name="pokemon-name">
-                            <option value="" disabled selected hidden>Name</option>
-                        </select>
-                    </div>
-
-                    <div class="pokemon-image">
-                        <img id="pokemon-img-3" class="pokemon-img" src="assets/unknown_pokemon_sprite-removebg-preview.png"
-                            alt="Selected Pokemon sprite">
-                    </div>
-
-                    <div class="field pokemon-item">
-                        <label for="pokemon-item-3" class="visually-hidden">Item</label>
-                        <select id="pokemon-item-3" class="item-select" name="pokemon-item">
-                            <option value="" disabled selected hidden>Item</option>
-                        </select>
-                    </div>
-
-                    <div class="moves">
-                        <div class="field move">
-                            <label for="move-3-1" class="visually-hidden">Move</label>
-                            <select id="move-3-1" class="move-select" name="move-1">
-                                <option value="" disabled selected hidden>Move</option>
+                        <div class="field pokemon-ability">
+                            <label for="pokemon-ability-3" class="visually-hidden">Ability</label>
+                            <select id="pokemon-ability-3" class="ability-select" name="pokemon-ability">
+                                <option value="" disabled selected hidden>Ability</option>
                             </select>
                         </div>
-                        <div class="field move">
-                            <label for="move-3-2" class="visually-hidden">Move</label>
-                            <select id="move-3-2" class="move-select" name="move-2">
-                                <option value="" disabled selected hidden>Move</option>
+                    </article>
+                </form>
+
+                <form class="pokemon-card-form" id="pokemon-form-4">
+                    <article class="pokemon-card">
+                        <div class="field pokemon-name">
+                            <label for="pokemon-name-4" class="visually-hidden">Name</label>
+                            <select id="pokemon-name-4" class="pokemon-select" name="pokemon-name">
+                                <option value="" disabled selected hidden>Name</option>
                             </select>
                         </div>
-                        <div class="field move">
-                            <label for="move-3-3" class="visually-hidden">Move</label>
-                            <select id="move-3-3" class="move-select" name="move-3">
-                                <option value="" disabled selected hidden>Move</option>
+
+                        <div class="field pokemon-type">
+                        </div>
+
+                        <div class="field pokemon-image">
+                            <img id="pokemon-img-4" class="pokemon-img"
+                                src="assets/unknown_sprite.png" alt="Selected Pokemon sprite">
+                        </div>
+
+                        <div class="field pokemon-item">
+                            <label for="pokemon-item-4" class="visually-hidden">Item</label>
+                            <select id="pokemon-item-4" class="item-select" name="pokemon-item">
+                                <option value="" disabled selected hidden>Item</option>
                             </select>
                         </div>
-                        <div class="field move">
-                            <label for="move-3-4" class="visually-hidden">Move</label>
-                            <select id="move-3-4" class="move-select" name="move-4">
-                                <option value="" disabled selected hidden>Move</option>
+
+                        <div class="field moves">
+                            <div class="field move">
+                                <label for="move-4-1" class="visually-hidden">Move</label>
+                                <select id="move-4-1" class="move-select" name="move-1">
+                                    <option value="" disabled selected hidden>Move</option>
+                                </select>
+                            </div>
+                            <div class="field move">
+                                <label for="move-4-2" class="visually-hidden">Move</label>
+                                <select id="move-4-2" class="move-select" name="move-2">
+                                    <option value="" disabled selected hidden>Move</option>
+                                </select>
+                            </div>
+                            <div class="field move">
+                                <label for="move-4-3" class="visually-hidden">Move</label>
+                                <select id="move-4-3" class="move-select" name="move-3">
+                                    <option value="" disabled selected hidden>Move</option>
+                                </select>
+                            </div>
+                            <div class="field move">
+                                <label for="move-4-4" class="visually-hidden">Move</label>
+                                <select id="move-4-4" class="move-select" name="move-4">
+                                    <option value="" disabled selected hidden>Move</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="field pokemon-ability">
+                            <label for="pokemon-ability-4" class="visually-hidden">Ability</label>
+                            <select id="pokemon-ability-4" class="ability-select" name="pokemon-ability">
+                                <option value="" disabled selected hidden>Ability</option>
                             </select>
                         </div>
-                    </div>
+                    </article>
+                </form>
 
-                    <div class="field pokemon-ability">
-                        <label for="pokemon-ability-3" class="visually-hidden">Ability</label>
-                        <select id="pokemon-ability-3" class="ability-select" name="pokemon-ability">
-                            <option value="" disabled selected hidden>Ability</option>
-                        </select>
-                    </div>
-                </article>
-            </form>
-
-            <form class="pokemon-card-form" id="pokemon-form-4">
-                <article class="pokemon-card">
-                    <div class="field pokemon-name">
-                        <label for="pokemon-name-4" class="visually-hidden">Name</label>
-                        <select id="pokemon-name-4" class="pokemon-select" name="pokemon-name">
-                            <option value="" disabled selected hidden>Name</option>
-                        </select>
-                    </div>
-
-                    <div class="pokemon-image">
-                        <img id="pokemon-img-4" class="pokemon-img" src="assets/unknown_pokemon_sprite-removebg-preview.png"
-                            alt="Selected Pokemon sprite">
-                    </div>
-
-                    <div class="field pokemon-item">
-                        <label for="pokemon-item-4" class="visually-hidden">Item</label>
-                        <select id="pokemon-item-4" class="item-select" name="pokemon-item">
-                            <option value="" disabled selected hidden>Item</option>
-                        </select>
-                    </div>
-
-                    <div class="moves">
-                        <div class="field move">
-                            <label for="move-4-1" class="visually-hidden">Move</label>
-                            <select id="move-4-1" class="move-select" name="move-1">
-                                <option value="" disabled selected hidden>Move</option>
+                <form class="pokemon-card-form" id="pokemon-form-5">
+                    <article class="pokemon-card">
+                        <div class="field pokemon-name">
+                            <label for="pokemon-name-5" class="visually-hidden">Name</label>
+                            <select id="pokemon-name-5" class="pokemon-select" name="pokemon-name">
+                                <option value="" disabled selected hidden>Name</option>
                             </select>
                         </div>
-                        <div class="field move">
-                            <label for="move-4-2" class="visually-hidden">Move</label>
-                            <select id="move-4-2" class="move-select" name="move-2">
-                                <option value="" disabled selected hidden>Move</option>
+
+                        <div class="field pokemon-type">
+                        </div>
+
+                        <div class="field pokemon-image">
+                            <img id="pokemon-img-5" class="pokemon-img"
+                                src="assets/unknown_sprite.png" alt="Selected Pokemon sprite">
+                        </div>
+
+                        <div class="field pokemon-item">
+                            <label for="pokemon-item-5" class="visually-hidden">Item</label>
+                            <select id="pokemon-item-5" class="item-select" name="pokemon-item">
+                                <option value="" disabled selected hidden>Item</option>
                             </select>
                         </div>
-                        <div class="field move">
-                            <label for="move-4-3" class="visually-hidden">Move</label>
-                            <select id="move-4-3" class="move-select" name="move-3">
-                                <option value="" disabled selected hidden>Move</option>
+
+                        <div class="field moves">
+                            <div class="field move">
+                                <label for="move-5-1" class="visually-hidden">Move</label>
+                                <select id="move-5-1" class="move-select" name="move-1">
+                                    <option value="" disabled selected hidden>Move</option>
+                                </select>
+                            </div>
+                            <div class="field move">
+                                <label for="move-5-2" class="visually-hidden">Move</label>
+                                <select id="move-5-2" class="move-select" name="move-2">
+                                    <option value="" disabled selected hidden>Move</option>
+                                </select>
+                            </div>
+                            <div class="field move">
+                                <label for="move-5-3" class="visually-hidden">Move</label>
+                                <select id="move-5-3" class="move-select" name="move-3">
+                                    <option value="" disabled selected hidden>Move</option>
+                                </select>
+                            </div>
+                            <div class="field move">
+                                <label for="move-5-4" class="visually-hidden">Move</label>
+                                <select id="move-5-4" class="move-select" name="move-4">
+                                    <option value="" disabled selected hidden>Move</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="field pokemon-ability">
+                            <label for="pokemon-ability-5" class="visually-hidden">Ability</label>
+                            <select id="pokemon-ability-5" class="ability-select" name="pokemon-ability">
+                                <option value="" disabled selected hidden>Ability</option>
                             </select>
                         </div>
-                        <div class="field move">
-                            <label for="move-4-4" class="visually-hidden">Move</label>
-                            <select id="move-4-4" class="move-select" name="move-4">
-                                <option value="" disabled selected hidden>Move</option>
+                    </article>
+                </form>
+
+                <form class="pokemon-card-form" id="pokemon-form-6">
+                    <article class="pokemon-card">
+                        <div class="field pokemon-name">
+                            <label for="pokemon-name-6" class="visually-hidden">Name</label>
+                            <select id="pokemon-name-6" class="pokemon-select" name="pokemon-name">
+                                <option value="" disabled selected hidden>Name</option>
                             </select>
                         </div>
-                    </div>
 
-                    <div class="field pokemon-ability">
-                        <label for="pokemon-ability-4" class="visually-hidden">Ability</label>
-                        <select id="pokemon-ability-4" class="ability-select" name="pokemon-ability">
-                            <option value="" disabled selected hidden>Ability</option>
-                        </select>
-                    </div>
-                </article>
-            </form>
+                        <div class="field pokemon-type">
+                        </div>
 
-            <form class="pokemon-card-form" id="pokemon-form-5">
-                <article class="pokemon-card">
-                    <div class="field pokemon-name">
-                        <label for="pokemon-name-5" class="visually-hidden">Name</label>
-                        <select id="pokemon-name-5" class="pokemon-select" name="pokemon-name">
-                            <option value="" disabled selected hidden>Name</option>
-                        </select>
-                    </div>
+                        <div class="field pokemon-image">
+                            <img id="pokemon-img-6" class="pokemon-img"
+                                src="assets/unknown_sprite.png" alt="Selected Pokemon sprite">
+                        </div>
 
-                    <div class="pokemon-image">
-                        <img id="pokemon-img-5" class="pokemon-img" src="assets/unknown_pokemon_sprite-removebg-preview.png"
-                            alt="Selected Pokemon sprite">
-                    </div>
-
-                    <div class="field pokemon-item">
-                        <label for="pokemon-item-5" class="visually-hidden">Item</label>
-                        <select id="pokemon-item-5" class="item-select" name="pokemon-item">
-                            <option value="" disabled selected hidden>Item</option>
-                        </select>
-                    </div>
-
-                    <div class="moves">
-                        <div class="field move">
-                            <label for="move-5-1" class="visually-hidden">Move</label>
-                            <select id="move-5-1" class="move-select" name="move-1">
-                                <option value="" disabled selected hidden>Move</option>
+                        <div class="field pokemon-item">
+                            <label for="pokemon-item-6" class="visually-hidden">Item</label>
+                            <select id="pokemon-item-6" class="item-select" name="pokemon-item">
+                                <option value="" disabled selected hidden>Item</option>
                             </select>
                         </div>
-                        <div class="field move">
-                            <label for="move-5-2" class="visually-hidden">Move</label>
-                            <select id="move-5-2" class="move-select" name="move-2">
-                                <option value="" disabled selected hidden>Move</option>
+
+                        <div class="field moves">
+                            <div class="field move">
+                                <label for="move-6-1" class="visually-hidden">Move</label>
+                                <select id="move-6-1" class="move-select" name="move-1">
+                                    <option value="" disabled selected hidden>Move</option>
+                                </select>
+                            </div>
+                            <div class="field move">
+                                <label for="move-6-2" class="visually-hidden">Move</label>
+                                <select id="move-6-2" class="move-select" name="move-2">
+                                    <option value="" disabled selected hidden>Move</option>
+                                </select>
+                            </div>
+                            <div class="field move">
+                                <label for="move-6-3" class="visually-hidden">Move</label>
+                                <select id="move-6-3" class="move-select" name="move-3">
+                                    <option value="" disabled selected hidden>Move</option>
+                                </select>
+                            </div>
+                            <div class="field move">
+                                <label for="move-6-4" class="visually-hidden">Move</label>
+                                <select id="move-6-4" class="move-select" name="move-4">
+                                    <option value="" disabled selected hidden>Move</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="field pokemon-ability">
+                            <label for="pokemon-ability-6" class="visually-hidden">Ability</label>
+                            <select id="pokemon-ability-6" class="ability-select" name="pokemon-ability">
+                                <option value="" disabled selected hidden>Ability</option>
                             </select>
                         </div>
-                        <div class="field move">
-                            <label for="move-5-3" class="visually-hidden">Move</label>
-                            <select id="move-5-3" class="move-select" name="move-3">
-                                <option value="" disabled selected hidden>Move</option>
-                            </select>
-                        </div>
-                        <div class="field move">
-                            <label for="move-5-4" class="visually-hidden">Move</label>
-                            <select id="move-5-4" class="move-select" name="move-4">
-                                <option value="" disabled selected hidden>Move</option>
-                            </select>
-                        </div>
-                    </div>
+                    </article>
+                </form>
+            </section>
+        </div>
 
-                    <div class="field pokemon-ability">
-                        <label for="pokemon-ability-5" class="visually-hidden">Ability</label>
-                        <select id="pokemon-ability-5" class="ability-select" name="pokemon-ability">
-                            <option value="" disabled selected hidden>Ability</option>
-                        </select>
-                    </div>
-                </article>
-            </form>
-
-            <form class="pokemon-card-form" id="pokemon-form-6">
-                <article class="pokemon-card">
-                    <div class="field pokemon-name">
-                        <label for="pokemon-name-6" class="visually-hidden">Name</label>
-                        <select id="pokemon-name-6" class="pokemon-select" name="pokemon-name">
-                            <option value="" disabled selected hidden>Name</option>
-                        </select>
-                    </div>
-
-                    <div class="pokemon-image">
-                        <img id="pokemon-img-6" class="pokemon-img" src="assets/unknown_pokemon_sprite-removebg-preview.png"
-                            alt="Selected Pokemon sprite">
-                    </div>
-
-                    <div class="field pokemon-item">
-                        <label for="pokemon-item-6" class="visually-hidden">Item</label>
-                        <select id="pokemon-item-6" class="item-select" name="pokemon-item">
-                            <option value="" disabled selected hidden>Item</option>
-                        </select>
-                    </div>
-
-                    <div class="moves">
-                        <div class="field move">
-                            <label for="move-6-1" class="visually-hidden">Move</label>
-                            <select id="move-6-1" class="move-select" name="move-1">
-                                <option value="" disabled selected hidden>Move</option>
-                            </select>
-                        </div>
-                        <div class="field move">
-                            <label for="move-6-2" class="visually-hidden">Move</label>
-                            <select id="move-6-2" class="move-select" name="move-2">
-                                <option value="" disabled selected hidden>Move</option>
-                            </select>
-                        </div>
-                        <div class="field move">
-                            <label for="move-6-3" class="visually-hidden">Move</label>
-                            <select id="move-6-3" class="move-select" name="move-3">
-                                <option value="" disabled selected hidden>Move</option>
-                            </select>
-                        </div>
-                        <div class="field move">
-                            <label for="move-6-4" class="visually-hidden">Move</label>
-                            <select id="move-6-4" class="move-select" name="move-4">
-                                <option value="" disabled selected hidden>Move</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="field pokemon-ability">
-                        <label for="pokemon-ability-6" class="visually-hidden">Ability</label>
-                        <select id="pokemon-ability-6" class="ability-select" name="pokemon-ability">
-                            <option value="" disabled selected hidden>Ability</option>
-                        </select>
-                    </div>
-                </article>
-            </form>
-
-        </section>
     </main>
 
-    <script src="js/script.js"></script>
+    <script src="src/script.js"></script>
 </body>
 
 </html>
