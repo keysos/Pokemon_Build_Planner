@@ -26,7 +26,7 @@ pokemonCards.forEach(card => {
         const res = await fetch(`${POKEAPI_BASE}/pokemon/${pokemonName}`);
         const data = await res.json();
 
-        sprite.src = data.sprites.front_default;
+        sprite.src = data.sprites.versions["generation-v"]["black-white"].animated.front_default;
 
         abilitySelect.innerHTML = '<option value=""></option>';
 
@@ -74,8 +74,10 @@ pokemonCards.forEach(card => {
     });
 });
 
+/* PREVIOUS VALUE 386 */
+
 async function populatePokemonSelects() {
-    const res = await fetch(`${POKEAPI_BASE}/pokemon?limit=386`);
+    const res = await fetch(`${POKEAPI_BASE}/pokemon?limit=151`);
     const data = await res.json();
 
     const selects = document.querySelectorAll(".pokemon-select");
@@ -88,8 +90,6 @@ async function populatePokemonSelects() {
             option.textContent = formatName(pokemon.name);
             select.appendChild(option);
         });
-
-        new TomSelect()
     });
 }
 

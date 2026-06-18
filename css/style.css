@@ -15,6 +15,8 @@
     --border: #BDE0FE;
 }
 
+/* Reset */
+
 *,
 *::after,
 *::before {
@@ -28,17 +30,22 @@ html {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Page */
 
 body {
     display: flex;
-    background-color: var(--background);
-    min-height: 100vh;
     flex-direction: column;
+
+    min-height: 100vh;
+
+    background-color: var(--background);
 }
 
 .header {
-    text-align: center;
     margin: 40px 0;
+    padding: 0 1rem;
+
+    text-align: center;
 }
 
 .header p {
@@ -48,21 +55,42 @@ body {
 .main {
     display: flex;
     justify-content: center;
+
+    padding: 0 20px 40px;
 }
 
-/*Pokemon card styling*/
+/* Pokemon Party Grid */
 
 .pokemon-party-display {
     display: grid;
 
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
+
+    width: 100%;
+    max-width: 1200px;
 }
 
+
+@media (max-width: 900px) {
+    .pokemon-party-display {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+@media (max-width: 560px) {
+    .pokemon-party-display {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* Pokemon Card */
+
 .pokemon-card {
-    padding: 10px;
-    border-radius: 10px;
     display: grid;
+
     grid-template-columns: repeat(2, 1fr);
 
     grid-template-areas:
@@ -71,11 +99,14 @@ body {
         "item ability";
 
     gap: 10px;
-
-    min-width: 350px;
-
+    width: 100%;
+    min-width: 0;
+    padding: 15px;
+    border-radius: 10px;
     background-color: var(--card);
 }
+
+/* Card Areas */
 
 .pokemon-name {
     grid-area: name;
@@ -89,18 +120,21 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+
     grid-area: image;
+
+    min-height: 170px;
 }
 
 .pokemon-img {
-    width: 140px;
+    width: min(140px, 80%);
     height: auto;
     image-rendering: pixelated;
 }
 
 .moves {
-    grid-area: moves;
     display: grid;
+    grid-area: moves;
     gap: 10px;
 }
 
@@ -108,17 +142,24 @@ body {
     grid-area: ability;
 }
 
-.item-select, .move-select {
-    max-width: 180px;
+/* Inputs */
+
+.item-select,
+.move-select {
+    max-width: none;
 }
 
 select {
-    min-width: 180px;
+    width: 100%;
+    min-width: 0;
+    height: 25px;
     border: none;
-    background-color: var(--card);
     border-bottom: 1px solid black;
+    background-color: var(--card);
     font-size: 1.2rem;
 }
+
+/* Accessibility */
 
 .visually-hidden {
     position: absolute;
