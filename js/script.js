@@ -81,13 +81,34 @@ async function populatePokemonSelects() {
     const selects = document.querySelectorAll(".pokemon-select");
 
     selects.forEach(select => {
+
         data.results.forEach(pokemon => {
             const option = document.createElement("option");
             option.value = pokemon.name;
             option.textContent = formatName(pokemon.name);
             select.appendChild(option);
         });
+
+        new TomSelect()
     });
 }
 
+async function populateItemSelects() {
+
+    const res = await fetch(`${POKEAPI_BASE}/item-attribute/holdable`);
+    const data = await res.json();
+
+    const sortedItems = data.items.sort((a, b) => a.name.localeCompare(b.name));
+
+    document.querySelectorAll(".item-select").forEach(select => {
+        sortedItems.forEach(item => {
+            const option = document.createElement("Option");
+            option.value = item.name;
+            option.textContent = formatName(item.name);
+            select.appendChild(option);
+        })
+    })
+}
+
 populatePokemonSelects();
+populateItemSelects();
