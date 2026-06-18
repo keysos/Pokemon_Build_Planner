@@ -42,7 +42,7 @@ let allPokemon = [];
 
 // STORAGE //
 function saveParty() {
-    const party = Array.from(pokemonCards).map(card => ({
+    const team = Array.from(pokemonCards).map(card => ({
         pokemon: card.querySelector(".pokemon-select").value,
         item: card.querySelector(".item-select").value,
         ability: card.querySelector(".ability-select").value,
@@ -52,7 +52,7 @@ function saveParty() {
         }))
     }));
 
-    sessionStorage.setItem("pokemonParty", JSON.stringify(party));
+    sessionStorage.setItem("pokemonParty", JSON.stringify(team));
 }
 
 async function loadParty() {
@@ -62,13 +62,13 @@ async function loadParty() {
 
         if (!saved) return;
 
-        const party = JSON.parse(saved);
+        const team = JSON.parse(saved);
 
         await populatePokemonSelects();
 
         for (let i = 0; i < pokemonCards.length; i++) {
             const card = pokemonCards[i];
-            const savedCard = party[i];
+            const savedCard = team[i];
 
             if (!savedCard?.pokemon) continue;
 
@@ -206,7 +206,7 @@ toggle.addEventListener("change", () => {
 
 clearBtn.addEventListener("click", () => {
 
-    if (!confirm("Clear all Pokemon from your party?")) return;
+    if (!confirm("Clear all Pokemon from your team?")) return;
 
     pokemonCards.forEach(card => {
         const sprite = card.querySelector(".pokemon-img");

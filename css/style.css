@@ -131,9 +131,9 @@ body {
   padding: 0 20px 40px;
 }
 
-/* POKEMON PARTY GRID */
+/* POKEMON team GRID */
 
-.pokemon-party-display {
+.pokemon-team-display {
   display: grid;
 
   grid-template-columns: repeat(3, 1fr);
@@ -145,14 +145,14 @@ body {
 
 
 @media (max-width: 1080px) {
-  .pokemon-party-display {
+  .pokemon-team-display {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 
 @media (max-width: 750px) {
-  .pokemon-party-display {
+  .pokemon-team-display {
     width: 80%;
     grid-template-columns: 1fr;
     margin: 0 auto;
