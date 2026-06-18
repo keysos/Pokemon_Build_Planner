@@ -272,13 +272,12 @@ body {
   position: relative;
 }
 
-.pokemon-card select:hover,
-.pokemon-card select:active {
+.pokemon-card select:hover {
   background-color: var(--surface-hover);
 }
 
 .pokemon-card select:disabled {
-  color: var(--text);
+  color: var(--text); 
   opacity: 0.9;
   cursor: not-allowed;
 }

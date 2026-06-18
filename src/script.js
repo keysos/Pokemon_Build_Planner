@@ -42,7 +42,10 @@ function saveParty() {
         pokemon: card.querySelector(".pokemon-select").value,
         item: card.querySelector(".item-select").value,
         ability: card.querySelector(".ability-select").value,
-        moves: Array.from(card.querySelectorAll(".move-select")).map(s => s.value)
+        moves: Array.from(card.querySelectorAll(".move-select")).map(s => ({
+            name: s.value,
+            type: s.className.replace("move-select", "").trim()
+        }))
     }));
 
     sessionStorage.setItem("pokemonParty", JSON.stringify(party));
@@ -78,12 +81,18 @@ async function loadParty() {
                 console.warn("Pokemon load failed:", e);
             }
 
-            await new Promise(resolve => setTimeout(resolve, 300));
+            await new Promise(resolve => setTimeout(resolve, 400));
+
+
+
+
 
             abilitySelect.value = savedCard.ability;
             itemSelect.value = savedCard.item;
             moveSelects.forEach((select, i) => {
-                select.value = savedCard.moves[i] ?? "";
+                const saved = savedCard.moves[i];
+                select.value = saved?.name ?? "";
+                select.className = `move-select ${saved?.type ?? ""}`.trim();
             });
         }
     } catch (err) {
@@ -237,6 +246,7 @@ pokemonCards.forEach(card => {
                 pokemonTypeContainer.appendChild(div);
             })
 
+            abilitySelect.innerHTML = '<option value="" disabled selected hidden>Ability</option>';
             data.abilities.forEach(entry => {
                 const option = document.createElement("option");
                 option.value = entry.ability.name;
