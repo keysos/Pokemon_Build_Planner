@@ -144,7 +144,7 @@ export function attachTooltips(team) {
                         // Calculate multiplier for this pokemon against the attacking type
                         const multiplier = getDefensiveMultiplier(pokemon.types, type);
                         
-                        const sprite = data.sprites.front_default;
+                        const sprite = data.sprites.versions["generation-viii"].icons.front_default
                         const statusLabel = multiplier > 1 ? "⚠️ WEAK" : multiplier < 1 ? "✓ RESIST" : "→ NORMAL";
                         
                         tooltipHTML += `
