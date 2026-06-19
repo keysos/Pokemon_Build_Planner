@@ -7,200 +7,200 @@ const POKEMON_LIMIT = 649;
 // lista dos 18 tipos Pokémon usada para percorrer e renderizar a tabela //
 
 const DISPLAY_TYPES = [
-  "bug",
-  "dark",
-  "dragon",
-  "electric",
-  "fairy",
-  "fighting",
+    "bug",
+    "dark",
+    "dragon",
+    "electric",
+    "fairy",
+    "fighting",
 
-  "fire",
-  "flying",
-  "ghost",
-  "grass",
-  "ground",
-  "ice",
+    "fire",
+    "flying",
+    "ghost",
+    "grass",
+    "ground",
+    "ice",
 
-  "normal",
-  "poison",
-  "psychic",
-  "rock",
-  "steel",
-  "water"
+    "normal",
+    "poison",
+    "psychic",
+    "rock",
+    "steel",
+    "water"
 ];
 
 // table team defence btw //
 
 const TABLE_TYPES = {
-  normal: { rock: 0.5, ghost: 0, steel: 0.5 },
-  fire: { grass: 2, ice: 2, bug: 2, steel: 2, fire: 0.5, water: 0.5, rock: 0.5, dragon: 0.5 },
-  water: { fire: 2, ground: 2, rock: 2, water: 0.5, grass: 0.5, dragon: 0.5 },
-  electric: { water: 2, flying: 2, electric: 0.5, grass: 0.5, dragon: 0.5, ground: 0 },
-  grass: { water: 2, ground: 2, rock: 2, fire: 0.5, grass: 0.5, poison: 0.5, flying: 0.5, bug: 0.5, dragon: 0.5, steel: 0.5 },
-  ice: { grass: 2, ground: 2, flying: 2, dragon: 2, fire: 0.5, water: 0.5, ice: 0.5, steel: 0.5 },
-  fighting: { normal: 2, ice: 2, rock: 2, dark: 2, steel: 2, poison: 0.5, flying: 0.5, psychic: 0.5, bug: 0.5, fairy: 0.5, ghost: 0 },
-  poison: { grass: 2, fairy: 2, poison: 0.5, ground: 0.5, rock: 0.5, ghost: 0.5, steel: 0 },
-  ground: { fire: 2, electric: 2, poison: 2, rock: 2, steel: 2, grass: 0.5, bug: 0.5, flying: 0 },
-  flying: { grass: 2, fighting: 2, bug: 2, electric: 0.5, rock: 0.5, steel: 0.5 },
-  psychic: { fighting: 2, poison: 2, psychic: 0.5, steel: 0.5, dark: 0 },
-  bug: { grass: 2, psychic: 2, dark: 2, fire: 0.5, fighting: 0.5, poison: 0.5, flying: 0.5, ghost: 0.5, steel: 0.5, fairy: 0.5 },
-  rock: { fire: 2, ice: 2, flying: 2, bug: 2, fighting: 0.5, ground: 0.5, steel: 0.5 },
-  ghost: { psychic: 2, ghost: 2, dark: 0.5, normal: 0 },
-  dragon: { dragon: 2, steel: 0.5, fairy: 0 },
-  dark: { psychic: 2, ghost: 2, fighting: 0.5, dark: 0.5, fairy: 0.5 },
-  steel: { ice: 2, rock: 2, fairy: 2, fire: 0.5, water: 0.5, electric: 0.5, steel: 0.5 },
-  fairy: { fighting: 2, dragon: 2, dark: 2, fire: 0.5, poison: 0.5, steel: 0.5 }
+    normal: { rock: 0.5, ghost: 0, steel: 0.5 },
+    fire: { grass: 2, ice: 2, bug: 2, steel: 2, fire: 0.5, water: 0.5, rock: 0.5, dragon: 0.5 },
+    water: { fire: 2, ground: 2, rock: 2, water: 0.5, grass: 0.5, dragon: 0.5 },
+    electric: { water: 2, flying: 2, electric: 0.5, grass: 0.5, dragon: 0.5, ground: 0 },
+    grass: { water: 2, ground: 2, rock: 2, fire: 0.5, grass: 0.5, poison: 0.5, flying: 0.5, bug: 0.5, dragon: 0.5, steel: 0.5 },
+    ice: { grass: 2, ground: 2, flying: 2, dragon: 2, fire: 0.5, water: 0.5, ice: 0.5, steel: 0.5 },
+    fighting: { normal: 2, ice: 2, rock: 2, dark: 2, steel: 2, poison: 0.5, flying: 0.5, psychic: 0.5, bug: 0.5, fairy: 0.5, ghost: 0 },
+    poison: { grass: 2, fairy: 2, poison: 0.5, ground: 0.5, rock: 0.5, ghost: 0.5, steel: 0 },
+    ground: { fire: 2, electric: 2, poison: 2, rock: 2, steel: 2, grass: 0.5, bug: 0.5, flying: 0 },
+    flying: { grass: 2, fighting: 2, bug: 2, electric: 0.5, rock: 0.5, steel: 0.5 },
+    psychic: { fighting: 2, poison: 2, psychic: 0.5, steel: 0.5, dark: 0 },
+    bug: { grass: 2, psychic: 2, dark: 2, fire: 0.5, fighting: 0.5, poison: 0.5, flying: 0.5, ghost: 0.5, steel: 0.5, fairy: 0.5 },
+    rock: { fire: 2, ice: 2, flying: 2, bug: 2, fighting: 0.5, ground: 0.5, steel: 0.5 },
+    ghost: { psychic: 2, ghost: 2, dark: 0.5, normal: 0 },
+    dragon: { dragon: 2, steel: 0.5, fairy: 0 },
+    dark: { psychic: 2, ghost: 2, fighting: 0.5, dark: 0.5, fairy: 0.5 },
+    steel: { ice: 2, rock: 2, fairy: 2, fire: 0.5, water: 0.5, electric: 0.5, steel: 0.5 },
+    fairy: { fighting: 2, dragon: 2, dark: 2, fire: 0.5, poison: 0.5, steel: 0.5 }
 };
 
 
-// calcula quanto dano um Pokémon recebe de um tipo atacante //
+// CALCULTATE HOW MUCH A SPECIFIC POKEMON IS AFFECTED BY A TYPE //
 
 function getDefensiveMultiplier(defendingTypes, attackType) {
 
-  let multiplier = 1;
+    let multiplier = 1;
 
-  defendingTypes.forEach(type => {
-    multiplier *= (
-      TABLE_TYPES[attackType]?.[type] ?? 1
-    );
-  });
+    defendingTypes.forEach(type => {
+        multiplier *= (
+            TABLE_TYPES[attackType]?.[type] ?? 1
+        );
+    });
 
-  return multiplier;
+    return multiplier;
 }
 
-// converte multiplicadores em pontuaçao de defesa //
+// TURN MULTIPLIERS INTO DEFENSE POINTS //
 
 function defensiveScore(multiplier) {
 
-  switch (multiplier) {
+    switch (multiplier) {
 
-    case 0:
-      return 2;
+        case 0:
+            return 2;
 
-    case 0.25:
-      return 1.5;
+        case 0.25:
+            return 1.5;
 
-    case 0.5:
-      return 1;
+        case 0.5:
+            return 1;
 
-    case 1:
-      return 0;
+        case 1:
+            return 0;
 
-    case 2:
-      return -1;
+        case 2:
+            return -1;
 
-    case 4:
-      return -2;
+        case 4:
+            return -2;
 
-    default:
-      return 0;
-  }
+        default:
+            return 0;
+    }
 }
 
 // calcula o total de pontos da equipe //
 
 function calculateTeamDefense(team) {
 
-  const result = {};
+    const result = {};
 
-  DISPLAY_TYPES.forEach(attackType => {
+    DISPLAY_TYPES.forEach(attackType => {
 
-    let score = 0;
+        let score = 0;
 
-    team.forEach(pokemon => {
+        team.forEach(pokemon => {
 
-      const multiplier =
-        getDefensiveMultiplier(
-          pokemon.types,
-          attackType
-        );
+            const multiplier =
+                getDefensiveMultiplier(
+                    pokemon.types,
+                    attackType
+                );
 
-      score += defensiveScore(multiplier);
+            score += defensiveScore(multiplier);
+        });
+
+        result[attackType] =
+            Number(score.toFixed(1));
     });
 
-    result[attackType] =
-      Number(score.toFixed(1));
-  });
-
-  return result;
+    return result;
 }
 
 
-// monta um array contendo os Pokémon selecionados e seus tipos //
+// BUILD AN ARRAY FILLED WITH THE POKEMON AND THEIR TYPE //
 
 async function buildCurrentTeam() {
 
-  const team = [];
+    const team = [];
 
-  for (const card of pokemonCards) {
+    for (const card of pokemonCards) {
 
-    const pokemonName =
-      card.querySelector(".pokemon-select").value;
+        const pokemonName =
+            card.querySelector(".pokemon-select").value;
 
-    if (!pokemonName) continue;
+        if (!pokemonName) continue;
 
-    try {
+        try {
 
-      const res =
-        await fetch(
-          `${POKEAPI_BASE}/pokemon/${pokemonName}`
-        );
+            const res =
+                await fetch(
+                    `${POKEAPI_BASE}/pokemon/${pokemonName}`
+                );
 
-      const data =
-        await res.json();
+            const data =
+                await res.json();
 
-      team.push({
-        name: pokemonName,
-        types: data.types.map(
-          t => t.type.name
-        )
-      });
+            team.push({
+                name: pokemonName,
+                types: data.types.map(
+                    t => t.type.name
+                )
+            });
 
-    } catch (err) {
-      console.error(err);
+        } catch (err) {
+            console.error(err);
+        }
     }
-  }
 
-  return team;
+    return team;
 }
 
 
-// Cria os elementos html da tabela //
+// RENDER THE TEAM DEFENCE TABLE //
 
 function renderTeamDefense(defense) {
 
-  const grid =
-    document.getElementById(
-      "team-defence-grid"
-    );
+    const grid =
+        document.getElementById(
+            "team-defence-grid"
+        );
 
-  if (!grid) return;
+    if (!grid) return;
 
-  grid.innerHTML = "";
+    grid.innerHTML = "";
 
-  DISPLAY_TYPES.forEach(type => {
+    DISPLAY_TYPES.forEach(type => {
 
-    const value =
-      defense[type];
+        const value =
+            defense[type];
 
-    let colorClass =
-      "defence-neutral";
+        let colorClass =
+            "defence-neutral";
 
-    if (value > 0)
-      colorClass =
-      "defence-positive";
+        if (value > 0)
+            colorClass =
+                "defence-positive";
 
-    if (value < 0)
-      colorClass =
-      "defence-negative";
+        if (value < 0)
+            colorClass =
+                "defence-negative";
 
-    const item =
-      document.createElement("div");
+        const item =
+            document.createElement("div");
 
-    item.className =
-      "defence-type";
+        item.className =
+            "defence-type";
 
-    item.innerHTML = `
+        item.innerHTML = `
       <div class="defence-label ${type}">
         ${formatName(type)}
       </div>
@@ -210,21 +210,21 @@ function renderTeamDefense(defense) {
       </div>
     `;
 
-    grid.appendChild(item);
-  });
+        grid.appendChild(item);
+    });
 }
 
-// atualiza toda a table //
+// UPDATE THE TABLE //
 
 async function updateTeamDefense() {
 
-  const team =
-    await buildCurrentTeam();
+    const team =
+        await buildCurrentTeam();
 
-  const defense =
-    calculateTeamDefense(team);
+    const defense =
+        calculateTeamDefense(team);
 
-  renderTeamDefense(defense);
+    renderTeamDefense(defense);
 }
 
 const GEN_RANGES = {
