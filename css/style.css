@@ -107,6 +107,7 @@ body {
   max-width: 1700px;
   padding: 20px;
   margin: 0 auto;
+  zoom: 80%;
 }
 
 #loading {
@@ -518,7 +519,7 @@ body {
   text-align: center;
   padding: 4px;
   border-radius: 6px;
-  font-size: .85rem;
+  font-size: 1rem;
   font-weight: 700;
 }
 
