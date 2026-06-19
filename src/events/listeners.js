@@ -8,11 +8,14 @@ import {
     fileInput,
     pokemonCards,
     loadingScreen,
-    mainApp
+    mainApp,
+    tooltip
 } from "../dom.js";
 import { populatePokemonSelects } from "../ui/pokemonSelects.js";
 import { updateTeamDefense } from "../ui/defenseTable.js";
 import { saveParty } from "../storage/partyStorage.js";
+import { formatName } from "../utils/helpers.js";
+import { getDefensiveMultiplier } from "../utils/defenseCalculator.js";
 
 // Handle type filter changes
 export function setupFilterListeners() {
@@ -114,5 +117,62 @@ export function setupExportButton() {
 export function setupImportButton() {
     importProfileBtn.addEventListener("click", () => {
         fileInput.click();
+    });
+}
+
+export function attachTooltips(team) {
+    const POKEAPI_BASE = "https://pokeapi.co/api/v2";
+    const defenceTypes = document.querySelectorAll(".defence-type");
+
+    defenceTypes.forEach(card => {
+        card.addEventListener("mouseenter", async () => {
+            const type = card.dataset.type;
+            const score = card.dataset.score;
+            
+            // Build HTML with team pokemon and their weakness/resistance
+            let tooltipHTML = `<strong>${formatName(type)}</strong><br><small>Defense Score: ${score > 0 ? "+" : ""}${score}</small><br><br>`;
+            
+            // Add pokemon with their sprites
+            if (team && team.length > 0) {
+                tooltipHTML += `<div class="tooltip-pokemon-grid">`;
+                
+                for (const pokemon of team) {
+                    try {
+                        const res = await fetch(`${POKEAPI_BASE}/pokemon/${pokemon.name}`);
+                        const data = await res.json();
+                        
+                        // Calculate multiplier for this pokemon against the attacking type
+                        const multiplier = getDefensiveMultiplier(pokemon.types, type);
+                        
+                        const sprite = data.sprites.front_default;
+                        const statusLabel = multiplier > 1 ? "⚠️ WEAK" : multiplier < 1 ? "✓ RESIST" : "→ NORMAL";
+                        
+                        tooltipHTML += `
+                            <div class="tooltip-pokemon-item">
+                                <img src="${sprite}" class="tooltip-pokemon-sprite">
+                                <div>${formatName(pokemon.name)}</div>
+                                <small>${statusLabel}</small>
+                            </div>
+                        `;
+                    } catch (err) {
+                        console.error("Error fetching pokemon sprite:", err);
+                    }
+                }
+                
+                tooltipHTML += `</div>`;
+            }
+            
+            tooltip.innerHTML = tooltipHTML;
+            tooltip.style.display = "block";
+        });
+
+        card.addEventListener("mousemove", e => {
+            tooltip.style.left = `${e.clientX - tooltip.offsetWidth / 2}px`;
+            tooltip.style.top = `${e.clientY + 15}px`;
+        });
+
+        card.addEventListener("mouseleave", () => {
+            tooltip.style.display = "none";
+        });
     });
 }

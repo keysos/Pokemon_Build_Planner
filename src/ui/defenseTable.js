@@ -2,9 +2,10 @@ import { DISPLAY_TYPES } from "../utils/constants.js";
 import { calculateTeamDefense } from "../utils/defenseCalculator.js";
 import { buildCurrentTeam } from "./pokemonSelects.js";
 import { formatName } from "../utils/helpers.js";
+import { attachTooltips } from "../events/listeners.js";
 
 // Render the team defense table
-export function renderTeamDefense(defense) {
+export function renderTeamDefense(defense, team) {
     const grid = document.getElementById("team-defence-grid");
 
     if (!grid) return;
@@ -25,6 +26,8 @@ export function renderTeamDefense(defense) {
         const item = document.createElement("div");
 
         item.className = "defence-type";
+        item.dataset.type = type;
+        item.dataset.score = value;
 
         item.innerHTML = `
       <div class="defence-label ${type}">
@@ -38,11 +41,13 @@ export function renderTeamDefense(defense) {
 
         grid.appendChild(item);
     });
+
+    attachTooltips(team);
 }
 
 // Update the team defense table
 export async function updateTeamDefense() {
     const team = await buildCurrentTeam();
     const defense = calculateTeamDefense(team);
-    renderTeamDefense(defense);
+    renderTeamDefense(defense, team);
 }
