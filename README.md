@@ -1,8 +1,8 @@
 # Pokémon Team Planner
 
-![Team Builder Screenshot](assets/project_logo.png)
-
-
+<p align="center">
+  <img src="./assets/project_logo.png" alt="Pokemon Team Builder" width="800">
+</p>
 A web-based Pokémon team builder that allows users to create and customize a Pokémon party with abilities, held items, and moves.
 
 ## Features
