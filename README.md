@@ -29,17 +29,7 @@ This project uses the PokéAPI to fetch:
 
 https://pokeapi.co/
 
-## Current Limitations
-
-- Currently supports only Generation 1 Pokémon
-- No team saving functionality
-- No competitive battle calculations yet
-
 ## Future Improvements
 
-- Add support for more generations
-- Add Pokémon stats display
-- Add type effectiveness information
-- Add team export/import
-- Add competitive team validation
-- Add damage calculator
+- Add random team generator
+- Add better mobile responsiveness
