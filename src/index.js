@@ -3,6 +3,7 @@ import { initializeCardListeners } from "./ui/cards.js";
 import { populatePokemonSelects, populateItemSelects, initializeAllPokemon } from "./ui/pokemonSelects.js";
 import { updateTeamDefense } from "./ui/defenseTable.js";
 import { updateTeamAttack } from "./ui/attackTable.js";
+import { initMobileNavigation } from "./ui/mobileNavigation.js";
 
 // Import storage
 import { loadParty, saveParty } from "./storage/partyStorage.js";
@@ -46,6 +47,8 @@ async function init() {
 
         // Initialize card event listeners
         initializeCardListeners();
+        // Initialize cards mobile
+        initMobileNavigation();
 
         // Load saved party and update UI
         await loadParty(populatePokemonSelects);
@@ -66,3 +69,16 @@ toggle.checked = systemPrefersDark;
 
 // Start the application
 init();
+
+// FIX manual scroll mobile
+const openManualBtn = document.getElementById("open-manual");
+const manualModal = document.getElementById("manual-modal");
+
+function resetScroll() {
+    manualModal.scrollTop = 0;
+}
+
+openManualBtn?.addEventListener("click", () => {
+    manualModal.showModal();
+    requestAnimationFrame(resetScroll);
+});

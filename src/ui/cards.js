@@ -32,6 +32,25 @@ export function initializeCardListeners() {
                 const data = await res.json();
 
                 sprite.src = data.sprites.versions["generation-v"]["black-white"].animated.front_default;
+                
+                // update slot image (mobile)
+                if (window.innerWidth <= 750) {
+
+                    const slotIndex = Array.from(pokemonCards).indexOf(card);
+
+                    const button = document.querySelector(
+                    `.team-slot-btn[data-slot="${slotIndex}"]`
+                    );
+
+                    if (button) {
+                      const img = button.querySelector(".slot-img");
+
+                      img.src = data.sprites.front_default;
+
+                      button.classList.add("has-pokemon");
+                    }
+                }
+
 
                 pokemonTypeContainer.innerHTML = '';
 
