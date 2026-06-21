@@ -37,6 +37,7 @@ export function calculateTeamOffense(team) {
                     }
 
                     hits.push({
+                        index: pokemon.index,
                         pokemon: pokemon.name,
                         move: move.name,
                         moveType: move.type,

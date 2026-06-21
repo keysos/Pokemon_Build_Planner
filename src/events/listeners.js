@@ -192,29 +192,47 @@ export function attachAttackTooltips(coverage) {
 
     attackTypes.forEach(card => {
         card.addEventListener("mouseenter", async () => {
+            
             const type = card.dataset.type;
             const hits = coverage?.[type] ?? [];
 
             let tooltipHTML = `<strong>${formatName(type)}</strong>`;
 
             if (hits.length > 0) {
-                const cols = Math.min(hits.length, 3);
+                const grouped = [];
+                const groupIndex = new Map();
+
+                hits.forEach(hit => {
+                    if (!groupIndex.has(hit.index)) {
+                        groupIndex.set(hit.index, grouped.length);
+                        grouped.push({ pokemon: hit.pokemon, moves: [] });
+                    }
+
+                    grouped[groupIndex.get(hit.index)].moves.push(hit);
+                });
+
+                const cols = Math.min(grouped.length, 3);
                 tooltipHTML += `<div class="tooltip-pokemon-grid" style="--cols: ${cols};">`;
 
-                for (const hit of hits) {
+                for (const group of grouped) {
                     try {
-                        const res = await fetch(`${POKEAPI_BASE}/pokemon/${hit.pokemon}`);
+                        const res = await fetch(`${POKEAPI_BASE}/pokemon/${group.pokemon}`);
                         const data = await res.json();
 
                         const sprite = data.sprites.versions["generation-viii"].icons.front_default;
-                        const label = hit.multiplier >= 4 ? "⚡ 4x" : "⚡ 2x";
+
+                        const movesHTML = group.moves
+                            .map(hit => {
+                                const label = hit.multiplier >= 4 ? "⚡ 4x" : "⚡ 2x";
+                                return `<small>${formatName(hit.move)} (${label})</small>`;
+                            })
+                            .join("");
 
                         tooltipHTML += `
                             <div class="tooltip-pokemon-item">
                                 <img src="${sprite}" class="tooltip-pokemon-sprite">
-                                <div>${formatName(hit.pokemon)}</div>
-                                <small>${formatName(hit.move)}</small>
-                                <small>${label}</small>
+                                <div>${formatName(group.pokemon)}</div>
+                                ${movesHTML}
                             </div>
                         `;
                     } catch (err) {
@@ -237,9 +255,24 @@ export function attachAttackTooltips(coverage) {
 
             const adjustedX = e.clientX / zoomLevel;
             const adjustedY = e.clientY / zoomLevel;
+            const offset = 15;
+            const margin = 8;
 
-            tooltip.style.left = `${adjustedX + 15}px`;
-            tooltip.style.top = `${adjustedY + 15}px`;
+            // Place it first so we can measure its real rendered size
+            tooltip.style.left = `${adjustedX + offset}px`;
+            tooltip.style.top = `${adjustedY + offset}px`;
+
+            const rect = tooltip.getBoundingClientRect();
+
+            // Flip above the cursor if it would overflow the bottom edge
+            if (rect.bottom > window.innerHeight - margin) {
+                tooltip.style.top = `${adjustedY - rect.height - offset}px`;
+            }
+
+            // Pull it left if it would overflow the right edge
+            if (rect.right > window.innerWidth - margin) {
+                tooltip.style.left = `${adjustedX - rect.width - offset}px`;
+            }
         });
 
         card.addEventListener("mouseleave", () => {

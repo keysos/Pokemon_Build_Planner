@@ -69,6 +69,28 @@ export function initializeCardListeners() {
 
                 currentMoves = currentMoves.filter(Boolean);
 
+                if (currentMoves.length === 1) {
+                    const onlyMove = currentMoves[0];
+
+                    moveSelects.forEach((select, index) => {
+                        if (index === 0) {
+                            select.innerHTML = `<option value="${onlyMove.name}" selected class="${onlyMove.type}" data-damage-class="${onlyMove.damageClass}">${formatName(onlyMove.name)}</option>`;
+                            select.value = onlyMove.name;
+                            select.className = `move-select ${onlyMove.type}`;
+                            select.dataset.damageClass = onlyMove.damageClass;
+                            select.disabled = false;
+                        } else {
+                            select.innerHTML = '<option value="" selected hidden>Move</option>';
+                            select.value = "";
+                            select.className = "move-select";
+                            select.dataset.damageClass = "";
+                            select.disabled = true;
+                        }
+                    });
+                } else {
+                    updateMoveOptions();
+                }
+
                 updateMoveOptions();
 
                 saveParty();
