@@ -1,19 +1,22 @@
 :root {
-  --background: #F3F6FB;
-  --card: #FFFFFF;
+  --background: #E4E8EF;
+  --card: #EEF0F4;
 
-  --surface: #E9EEF6;
-  --surface-hover: #DCE6F4;
+  --surface: #DBE0E9;
+  --surface-hover: #CCD3E0;
 
   --text: #111827;
   --text-dark: #1a1a1a;
   --text-light: #F8FAFC;
   --text-muted: #4B5563;
 
-  --border: #D1D9E6;
+  --border: #C2C9D6;
 
-  --shadow: 0 8px 20px rgba(0, 0, 0, .08);
-  --glow: rgba(0, 0, 0, 0.04);
+  --shadow: 0 8px 20px rgba(0, 0, 0, .10);
+  --glow: rgba(0, 0, 0, 0.05);
+
+  --positive: #2F9E44;
+  --negative: #C0392B;
 
   /* Pokemon Type Colors */
   --type-bug: #a8b820;
@@ -46,6 +49,8 @@ body.darkmode {
   --border: #34435F;
   --shadow: 0 8px 20px rgba(0, 0, 0, .25);
   --glow: rgba(255, 255, 255, 0.04);
+  --positive: #57D957;
+  --negative: #FF4D4D;
 }
 
 /* Reset */
@@ -417,12 +422,12 @@ body {
 
 .defence-positive,
 .attack-label {
-  color: #57d957;
+  color: var(--positive);
 }
 
 .defence-negative,
 .attack-negative {
-  color: #ff4d4d;
+  color: var(--negative);
 }
 
 .defence-neutral,
