@@ -44,7 +44,7 @@ export function setupClearButton() {
     clearBtn.addEventListener("click", () => {
         if (!confirm("Clear all Pokemon from your team?")) return;
 
-        pokemonCards.forEach(card => {
+        pokemonCards.forEach((card, index) => {
             const sprite = card.querySelector(".pokemon-img");
             const pokemonSelect = card.querySelector(".pokemon-select");
             const abilitySelect = card.querySelector(".ability-select");
@@ -63,7 +63,18 @@ export function setupClearButton() {
             sprite.src = "assets/unknown_sprite.png";
 
             pokemonTypeContainer.innerHTML = "";
+
+            const button = document.querySelector(`.team-slot-btn[data-slot="${index}"]`);
+
+            if (button) {
+                const slotImg = button.querySelector(".slot-img");
+
+                slotImg.src = "";
+                button.classList.remove("has-pokemon");
+            }
         });
+
+
 
         saveParty();
         updateTeamDefense();
@@ -296,7 +307,7 @@ manualModal.addEventListener("click", (e) => {
 
     const rect = manualModal.getBoundingClientRect();
 
-    const inside = 
+    const inside =
         e.clientX >= rect.left &&
         e.clientX <= rect.right &&
         e.clientY >= rect.top &&
@@ -306,3 +317,15 @@ manualModal.addEventListener("click", (e) => {
         manualModal.close();
     }
 })
+
+
+export function resetScroll() {
+    manualModal.scrollTop = 0;
+}
+
+export function setupModalHeight() {
+    openManualBtn?.addEventListener("click", () => {
+        manualModal.showModal();
+        requestAnimationFrame(resetScroll);
+    });
+}

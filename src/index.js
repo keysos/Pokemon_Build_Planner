@@ -4,6 +4,7 @@ import { populatePokemonSelects, populateItemSelects, initializeAllPokemon } fro
 import { updateTeamDefense } from "./ui/defenseTable.js";
 import { updateTeamAttack } from "./ui/attackTable.js";
 import { initMobileNavigation } from "./ui/mobileNavigation.js";
+import { setupModalHeight } from "./events/listeners.js";
 
 // Import storage
 import { loadParty, saveParty } from "./storage/partyStorage.js";
@@ -37,6 +38,7 @@ async function init() {
         setupClearButton();
         setupExportButton();
         setupImportButton();
+        setupModalHeight();
         setupFileImport(async () => {
             await loadParty(populatePokemonSelects);
             loadingScreen.style.display = "none";
@@ -44,6 +46,7 @@ async function init() {
             await updateTeamDefense();
             await updateTeamAttack();
         });
+        
 
         // Initialize card event listeners
         initializeCardListeners();
@@ -69,16 +72,3 @@ toggle.checked = systemPrefersDark;
 
 // Start the application
 init();
-
-// FIX manual scroll mobile
-const openManualBtn = document.getElementById("open-manual");
-const manualModal = document.getElementById("manual-modal");
-
-function resetScroll() {
-    manualModal.scrollTop = 0;
-}
-
-openManualBtn?.addEventListener("click", () => {
-    manualModal.showModal();
-    requestAnimationFrame(resetScroll);
-});

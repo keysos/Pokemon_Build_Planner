@@ -45,8 +45,8 @@ export function initializeCardListeners() {
                     if (button) {
                       const img = button.querySelector(".slot-img");
 
-                      img.src = data.sprites.front_default;
-
+                      img.src = data.sprites.versions["generation-viii"].icons.front_default;
+                    
                       button.classList.add("has-pokemon");
                     }
                 }
