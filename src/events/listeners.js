@@ -178,7 +178,10 @@ export function attachTooltips(team) {
                 }
 
                 tooltipHTML += `</div>`;
+            } else {
+                tooltipHTML += `<div class="tooltip-empty">No defense data yet</div>`;
             }
+            
 
             tooltip.innerHTML = tooltipHTML;
             tooltip.style.display = "block";

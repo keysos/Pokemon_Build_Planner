@@ -1,4 +1,4 @@
-
+// FIX mobile slot navigation
 import { pokemonCards } from "../dom.js";
 
 export function initMobileNavigation() {
