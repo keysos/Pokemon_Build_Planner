@@ -34,5 +34,3 @@ https://pokeapi.co/
 
 ## Future Improvements
 
-- Add random team generator
-- Add better mobile responsiveness
