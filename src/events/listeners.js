@@ -313,7 +313,6 @@ export function setupGenerateRandomTeamButton() {
         clearTeam();
 
         // Grab the options already sitting in one of the pokemon-select dropdowns
-        // (filter out the blank placeholder AND any disabled "stale current value" option)
         const sampleSelect = pokemonCards[0].querySelector(".pokemon-select");
         const pool = Array.from(sampleSelect.options)
             .filter(opt => opt.value && !opt.disabled)
